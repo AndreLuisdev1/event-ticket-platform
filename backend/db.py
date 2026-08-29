@@ -13,7 +13,7 @@ async def init_db():
         port=int(os.getenv("DB_PORT", 3306)),
         user=os.getenv("DB_USER", "devuser"),
         password=os.getenv("DB_PASSWORD", "devpassword"),
-        db=os.getenv("DB_NAME", "elitedev_db"),
+        db=os.getenv("DB_NAME", "cinema_db"),
         autocommit=True,
         minsize=1,
         maxsize=10 #Define o tamanho máximo do pool de conexões, deixarei um número razoável para evitar sobrecarga no banco de dados, mas ainda permitir um teste robusto.

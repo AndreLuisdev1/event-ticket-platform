@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: elitedev_db
+      MYSQL_DATABASE: cinema_db
       MYSQL_USER: devuser
       MYSQL_PASSWORD: devpassword
     ports:

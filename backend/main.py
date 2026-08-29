@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from db import close_db, init_db
+from scr.routes.events import router as events_router
 from scr.routes.seats import router as seats_router
 from scr.routes.tickets import router as tickets_router
 
@@ -35,6 +36,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(events_router)
 app.include_router(seats_router)
 app.include_router(tickets_router)
 
