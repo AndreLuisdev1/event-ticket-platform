@@ -14,7 +14,6 @@ class SeatResponse(BaseModel):
 
 class SeatHoldRequest(BaseModel):
     seat_id: int = Field(gt=0)
-    user_id: int = Field(gt=0)
 
 
 class SeatHoldResponse(BaseModel):

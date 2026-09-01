@@ -1,12 +1,17 @@
 from datetime import datetime
-
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class TicketCheckoutRequest(BaseModel):
-	event_id: int = Field(gt=0)
-	seat_id: int = Field(gt=0)
-	user_id: int = Field(gt=0)
+    event_id: int = Field(gt=0)
+    seat_id: int = Field(gt=0)
+    
+    @field_validator("event_id", "seat_id")
+    @classmethod
+    def validate_positive_ids(cls, v):
+        if v <= 0:
+            raise ValueError("ID deve ser um número positivo")
+        return v
 
 
 class TicketResponse(BaseModel):
@@ -34,7 +39,14 @@ class TicketCheckoutResponse(BaseModel):
 
 
 class TicketValidateRequest(BaseModel):
-	ticket_code: str = Field(min_length=1)
+    ticket_code: str = Field(min_length=1, max_length=255)
+    
+    @field_validator("ticket_code")
+    @classmethod
+    def validate_not_empty(cls, v):
+        if not v.strip():
+            raise ValueError("Código do ticket não pode ser vazio")
+        return v
 
 
 class TicketShareResponse(BaseModel):
