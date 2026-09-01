@@ -1,10 +1,10 @@
-from fastapi import APIRouter, HTTPException, status
-
+from fastapi import APIRouter, Depends, HTTPException, status
+from auth.dependencies import get_current_user
 from scr.schemas.seat import (
 	SeatHoldRequest,
 	SeatHoldResponse,
 	SeatReleaseResponse,
-	SeatResponse,
+	SeatResponse
 )
 from scr.services.seat_service import (
 	SeatNotFoundError,
@@ -12,36 +12,28 @@ from scr.services.seat_service import (
 	SeatUnavailableError,
 	hold_seat,
 	list_event_seats,
-	release_seat,
+	release_seat
 )
 
 
 router = APIRouter(tags=["seats"])
 
 
-@router.get(
-	"/events/{event_id}/seats",
-	response_model=list[SeatResponse],
-	status_code=status.HTTP_200_OK,
-)
+@router.get("/events/{event_id}/seats", response_model=list[SeatResponse], status_code=status.HTTP_200_OK)
 async def get_event_seats(event_id: int) -> list[SeatResponse]:
 	try:
 		return await list_event_seats(event_id)
 	except Exception as error:
 		raise HTTPException(
 			status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-			detail="Erro interno ao buscar assentos do evento",
+			detail="Erro interno ao buscar assentos do evento"
 		) from error
 
 
-@router.post(
-	"/seats/hold",
-	response_model=SeatHoldResponse,
-	status_code=status.HTTP_200_OK,
-)
-async def hold_event_seat(payload: SeatHoldRequest) -> SeatHoldResponse:
+@router.post("/seats/hold", response_model=SeatHoldResponse, status_code=status.HTTP_200_OK)
+async def hold_event_seat(payload: SeatHoldRequest, current_user: dict = Depends(get_current_user)) -> SeatHoldResponse:
 	try:
-		return await hold_seat(payload.seat_id, payload.user_id)
+		return await hold_seat(payload.seat_id, current_user["id"])
 	except SeatNotFoundError as error:
 		raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(error)) from error
 	except SeatUnavailableError as error:
@@ -49,18 +41,16 @@ async def hold_event_seat(payload: SeatHoldRequest) -> SeatHoldResponse:
 	except Exception as error:
 		raise HTTPException(
 			status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-			detail="Erro interno ao bloquear assento",
+			detail="Erro interno ao bloquear assento"
 		) from error
 
 
-@router.post(
-	"/seats/release",
-	response_model=SeatReleaseResponse,
+@router.post("/seats/release", response_model=SeatReleaseResponse,
 	status_code=status.HTTP_200_OK,
 )
-async def release_event_seat(payload: SeatHoldRequest) -> SeatReleaseResponse:
+async def release_event_seat(payload: SeatHoldRequest, current_user: dict = Depends(get_current_user)) -> SeatReleaseResponse:
 	try:
-		return await release_seat(payload.seat_id, payload.user_id)
+		return await release_seat(payload.seat_id, current_user["id"])
 	except SeatNotFoundError as error:
 		raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(error)) from error
 	except SeatReleaseNotAllowedError as error:
@@ -68,5 +58,5 @@ async def release_event_seat(payload: SeatHoldRequest) -> SeatReleaseResponse:
 	except Exception as error:
 		raise HTTPException(
 			status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-			detail="Erro interno ao liberar assento",
+			detail="Erro interno ao liberar assento"
 		) from error
