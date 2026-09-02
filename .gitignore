@@ -4,10 +4,14 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 
-node_modules
-dist
-dist-ssr
-*.local
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/.vite/
+frontend/.env
+frontend/.env.*
+frontend/*.local
 
 # Editor directories and files
 .vscode/*
@@ -19,3 +23,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
