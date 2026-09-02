@@ -1,0 +1,233 @@
+/* ============================================================================
+  TOKENS DO LAYOUT
+  ============================================================================ */
+
+:root {
+  --sidebar-width: 260px;
+  --bg-gradient: linear-gradient(125deg, #160b2d 0%, #3b155d 52%, #711d68 82%, #251039 100%);
+  --bg-surface: rgba(31, 16, 53, 0.82);
+  --border-glass: rgba(255, 255, 255, 0.16);
+  --border-glass-hover: rgba(240, 171, 252, 0.65);
+  --accent-purple: #a855f7;
+  --accent-pink: #f472b6;
+  --accent-gradient: linear-gradient(135deg, #a855f7 0%, #f472b6 100%);
+  --text-primary: #f8f5ff;
+  --text-secondary: #d2c4df;
+  --text-muted: #aa98bc;
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+}
+
+/* ============================================================================
+   BASE DA APLICACAO
+   ============================================================================ */
+
+.app-layout {
+  font-family: var(--font-family);
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  position: relative;
+  isolation: isolate;
+  background-attachment: fixed;
+  color: var(--text-primary);
+}
+
+/* ============================================================================
+  SIDEBAR GLASSMORPHISM
+  ============================================================================ */
+
+.app-sidebar-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: linear-gradient(160deg, rgba(48, 25, 78, .94), rgba(30, 15, 49, .94));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-right: 1px solid var(--border-glass);
+  color: var(--text-primary);
+}
+
+/* ============================================================================
+  LOGOTIPO
+  ============================================================================ */
+
+.app-logo {
+  padding: 28px 24px 20px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+}
+
+.app-logo span {
+  background: var(--accent-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.app-sidebar-content .MuiDivider-root {
+  border-color: var(--border-glass);
+  margin: 0 16px;
+}
+
+/* ============================================================================
+  NAVEGACAO
+  ============================================================================ */
+
+.app-navigation {
+  padding: 20px 14px;
+}
+
+.app-navigation-item, 
+.app-logout {
+  min-height: 46px;
+  margin-bottom: 6px;
+  border-radius: 12px;
+  color: var(--text-secondary);
+  transition: all 0.2s ease-in-out;
+}
+
+.app-navigation-item .MuiListItemIcon-root,
+.app-logout .MuiListItemIcon-root {
+  min-width: 42px !important;
+  color: #d0aef5 !important;
+}
+
+.app-navigation-item .MuiListItemIcon-root .MuiSvgIcon-root,
+.app-logout .MuiListItemIcon-root .MuiSvgIcon-root {
+  color: inherit;
+}
+
+.app-navigation-item:hover .MuiListItemIcon,
+.app-logout:hover .MuiListItemIcon {
+  color: #f9a8d4;
+}
+
+.app-navigation-item.Mui-selected .MuiListItemIcon {
+  color: #ffffff;
+}
+
+.app-navigation-item.Mui-selected:hover {
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.28) 0%, rgba(244, 114, 182, 0.18) 100%);
+}
+
+/* ============================================================================
+  AREA DO USUARIO
+  ============================================================================ */
+
+.app-user-area {
+  margin-top: auto;
+  padding: 16px;
+}
+
+.app-user-area > .MuiDivider-root {
+  margin-bottom: 16px;
+}
+
+.app-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-glass);
+  margin-bottom: 12px;
+}
+
+.app-user .MuiAvatar-root {
+  width: 36px;
+  height: 36px;
+  background: var(--accent-gradient);
+  box-shadow: 0 2px 8px rgba(168, 85, 247, 0.4);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.app-user-info {
+  min-width: 0;
+}
+
+.app-user-info .MuiTypography-root:first-child {
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-user-info .MuiTypography-root:last-child {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.app-logout {
+  padding: 8px 12px;
+}
+
+/* ============================================================================
+  DRAWERS MUI
+  ============================================================================ */
+
+.app-drawer-desktop .MuiDrawer-paper {
+  width: var(--sidebar-width);
+  border: 0;
+  background: transparent;
+}
+
+.app-drawer-mobile {
+  display: none;
+}
+
+/* ============================================================================
+  CONTEUDO PRINCIPAL
+  ============================================================================ */
+
+.app-main {
+  min-height: 100vh;
+  margin-left: var(--sidebar-width);
+  padding: 96px 36px 36px;
+}
+
+/* ============================================================================
+  RESPONSIVIDADE
+  ============================================================================ */
+@media (max-width: 899px) {
+  .app-header {
+    width: 100%;
+    margin-left: 0;
+  }
+  
+  .app-menu-button {
+    display: inline-flex;
+    margin-right: 16px;
+  }
+  
+  .app-drawer-desktop {
+    display: none;
+  }
+  
+  .app-drawer-mobile {
+    display: block;
+  }
+  
+  .app-drawer-mobile .MuiDrawer-paper {
+    width: var(--sidebar-width);
+    background: transparent;
+    border: 0;
+  }
+  
+  .app-main {
+    margin-left: 0;
+    padding: 88px 20px 28px;
+  }
+}
+
+@media (max-width: 420px) {
+  .app-main {
+    padding-inline: 16px;
+  }
+}

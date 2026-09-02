@@ -103,7 +103,7 @@ export default function LoginPage() {
 						   edge="end">{showPassword ? <VisibilityOff /> : <Visibility />}</IconButton></InputAdornment>) } }} />
                 {error && <Alert className="auth-error" severity="error">{error}</Alert>}
                 <Button variant="contained" color="primary" type="submit" disabled={isLoading}>
-                  {isLoading ? 'Entrando...' : 'Entrar'} <span aria-hidden="true">-&gt;</span>
+                  {isLoading ? 'Entrando...' : 'Entrar'} <span aria-hidden="true"></span>
                 </Button>
               </Stack>
 
