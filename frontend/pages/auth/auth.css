@@ -1,0 +1,396 @@
+/* ==========================================================================
+   AUTH PAGE & ANIMATED BACKGROUND
+   ========================================================================== */
+
+.auth-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px 20px;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #faf5ff;
+  background: linear-gradient(-45deg, #07030d, #1a0535, #2d0550, #4a0a3a, #1a0535, #07030d);
+  background-size: 400% 400%;
+  animation: gradShift 14s ease infinite;
+}
+
+@keyframes gradShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ==========================================================================
+   AURAS (BLEND COM O FUNDO)
+   ========================================================================== */
+
+.auth-page::before {
+  content: '';
+  position: absolute;
+  width: 75vw;
+  height: 85vh;
+  min-width: 600px;
+  min-height: 600px;
+  left: -35%;
+  top: 5%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    rgba(168, 85, 247, 0.45) 0%,
+    rgba(126, 34, 206, 0.25) 35%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  transform: scale(0.90);
+  z-index: 0;
+  pointer-events: none;
+  animation: purplePulse 7s ease-in-out infinite;
+}
+
+.auth-page::after {
+  content: '';
+  position: absolute;
+  width: 75vw;
+  height: 85vh;
+  min-width: 600px;
+  min-height: 600px;
+  right: -35%;
+  top: 5%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    rgba(236, 72, 153, 0.40) 0%,
+    rgba(219, 39, 119, 0.20) 35%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  transform: scale(0.90);
+  z-index: 0;
+  pointer-events: none;
+  animation: pinkPulse 3s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   PULSAÇÕES DAS AURAS
+   ========================================================================== */
+
+@keyframes purplePulse {
+  0%, 100% { transform: scale(0.88) translate(0, 2%); opacity: 0.5; }
+  40%      { transform: scale(1.10) translate(6%, -2%); opacity: 0.85; }
+  60%      { transform: scale(1.04) translate(4%, 1%); opacity: 0.7; }
+}
+
+@keyframes pinkPulse {
+  0%, 100% { transform: scale(1.05) translate(4%, -2%); opacity: 0.75; }
+  50%      { transform: scale(0.88) translate(-2%, 3%); opacity: 0.35; }
+}
+
+/* ==========================================================================
+   CARD CENTRAL (GLASSMORPHISM AJUSTADO)
+   ========================================================================== */
+
+.auth-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(360px, 460px);
+  width: min(100%, 1060px);
+  min-height: 650px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  background: rgba(14, 9, 26, 0.72);
+  box-shadow: 
+    0 32px 100px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(126, 34, 206, 0.15);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* ==========================================================================
+   HERO COM SLIDESHOW E TEXTO NA BASE
+   ========================================================================== */
+
+.auth-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 44px 40px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #080114;
+}
+
+.hero-slides-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.hero-slide-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 1.4s ease-in-out, transform 6s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, transform;
+}
+
+.hero-slide-img.active {
+  opacity: 0.65;
+  transform: scale(1);
+}
+
+.hero-backdrop-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 1, 20, 0.75) 0%,
+    rgba(14, 9, 26, 0.45) 35%,
+    rgba(14, 9, 26, 0.88) 75%,
+    rgba(8, 1, 20, 0.98) 100%
+  );
+}
+
+.auth-brand {
+  position: relative;
+  z-index: 2;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #faf5ff;
+}
+
+.auth-brand span {
+  color: #f472b6;
+}
+
+.auth-hero-copy {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.auth-hero-copy h1 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 3.8vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+}
+
+.auth-hero-copy h1 em {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #f472b6;
+}
+
+.auth-hero-copy p {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.5;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+.hero-indicators {
+  display: flex;
+  gap: 6px;
+  margin-top: 0.5rem;
+}
+
+.hero-indicator-dot {
+  width: 16px;
+  height: 3px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.25);
+  transition: all 0.4s ease;
+}
+
+.hero-indicator-dot.active {
+  width: 32px;
+  background: #f472b6;
+  box-shadow: 0 0 10px rgba(244, 114, 182, 0.5);
+}
+
+/* ==========================================================================
+   TÍTULO DO FORMULÁRIO (PADRONIZADO)
+   ========================================================================== */
+.auth-form-content h2 {
+  margin: 0 0 8px;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.auth-form-content h2 em {
+  font-style: italic;
+  font-weight: 400;
+  color: #f472b6;
+}
+
+/* ==========================================================================
+   FORMULÁRIO
+   ========================================================================== */
+
+.auth-form-panel {
+  display: flex;
+  align-items: center;
+  padding: 56px 52px;
+  background: rgba(9, 5, 17, 0.58);
+}
+
+.auth-form-content {
+  width: 100%;
+}
+
+.auth-kicker {
+  margin: 0 0 14px;
+  color: #f0abfc;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.auth-form-content h2 {
+  margin: 0 0 10px;
+  font: 400 38px / 1.08 Georgia, serif;
+}
+
+.auth-subtitle {
+  margin: 0 0 30px;
+  color: #c4b5d4;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.auth-register-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* ==========================================================================
+   MUI OVERRIDES
+   ========================================================================== */
+
+.auth-form .MuiInputBase-input {
+  color: #faf5ff;
+}
+
+.auth-form .MuiSvgIcon-root {
+  color: #a78bba;
+}
+
+.auth-role-label {
+  color: #c4b5d4 !important;
+}
+
+.auth-error {
+  border-radius: 12px !important;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.auth-footer {
+  margin: 24px 0 0;
+  color: #a78bba;
+  font-size: 13px;
+  text-align: center;
+}
+
+.auth-footer a {
+  color: #f0abfc;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE E ACESSIBILIDADE
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  .auth-page {
+    padding: 0;
+    place-items: stretch;
+    overflow: auto;
+  }
+
+  .auth-layout {
+    display: block;
+    min-height: 100vh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .auth-hero {
+    min-height: 280px;
+    padding: 32px 28px;
+  }
+
+  .auth-hero h1 {
+    font-size: 42px;
+  }
+
+  .auth-form-panel {
+    min-height: calc(100vh - 280px);
+    padding: 44px 28px 52px;
+  }
+}
+
+@media (max-width: 500px) {
+  .auth-register-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .auth-form-panel {
+    padding-inline: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-page,
+  .auth-page::before,
+  .auth-page::after {
+    animation: none;
+  }
+}
