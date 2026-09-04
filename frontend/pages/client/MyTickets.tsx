@@ -47,31 +47,31 @@ export default function MyTicketsPage() {
 
   useEffect(() => {
     void fetchUserTickets();
-  }, []);
 
-  async function fetchUserTickets() {
-    setIsLoading(true);
-    setError('');
-    try {
-      const response = await fetch(`${API_URL}/tickets/me`, {
-        headers: {
-          Authorization: `Bearer ${getAccessToken()}`,
-        },
-      });
+    async function fetchUserTickets() {
+      setIsLoading(true);
+      setError('');
+      try {
+        const response = await fetch(`${API_URL}/tickets/me`, {
+          headers: {
+            Authorization: `Bearer ${getAccessToken()}`,
+          },
+        });
 
-      if (!response.ok) {
-        const body = await response.json().catch(() => null);
-        throw new Error(body?.detail ?? 'Não foi possível carregar seus ingressos.');
+        if (!response.ok) {
+          const body = await response.json().catch(() => null);
+          throw new Error(body?.detail ?? 'Não foi possível carregar seus ingressos.');
+        }
+
+        const data = (await response.json()) as TicketItem[];
+        setTickets(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Erro ao consultar ingressos.');
+      } finally {
+        setIsLoading(false);
       }
-
-      const data = (await response.json()) as TicketItem[];
-      setTickets(data);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erro ao consultar ingressos.');
-    } finally {
-      setIsLoading(false);
     }
-  }
+  }, []);
 
   function handleCopyCode(ticketCode: string) {
     void navigator.clipboard.writeText(ticketCode);
