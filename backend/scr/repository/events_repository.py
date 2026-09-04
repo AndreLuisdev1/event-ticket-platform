@@ -62,6 +62,17 @@ async def create_event(
     )
 
 
+async def create_event_seats(event_id: int, capacity: int) -> None:
+    for seat_number in range(1, capacity + 1):
+        await execute_query(
+            """
+            INSERT INTO seats (event_id, seat_number, status)
+            VALUES (%s, %s, 'AVAILABLE')
+            """,
+            (event_id, str(seat_number)),
+        )
+
+
 async def update_event(event_id: int, data: dict[str, Any]) -> int:
     if not data:
         return 0

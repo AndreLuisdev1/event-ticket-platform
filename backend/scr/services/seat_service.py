@@ -1,6 +1,6 @@
 from typing import Any
 
-from scr.repository import seat_repository
+from scr.repository import events_repository, seat_repository
 
 
 class SeatNotFoundError(Exception):
@@ -17,6 +17,13 @@ class SeatReleaseNotAllowedError(Exception):
 
 async def list_event_seats(event_id: int) -> list[dict[str, Any]]:
     await seat_repository.expire_held_seats(event_id)
+    seats = await seat_repository.find_by_event(event_id)
+    if seats:
+        return seats
+
+    event = await events_repository.get_by_id(event_id)
+    if event:
+        await events_repository.create_event_seats(event_id, event["capacity"])
     return await seat_repository.find_by_event(event_id)
 
 

@@ -34,6 +34,7 @@ async def create_event(payload: dict[str, Any]) -> dict[str, Any]:
         tmdb_id=payload.get("tmdb_id"),
         poster_url=payload.get("poster_url"),
     )
+    await events_repository.create_event_seats(event_id, payload["capacity"])
     return await get_event(event_id)
 
 

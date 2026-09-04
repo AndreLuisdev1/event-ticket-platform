@@ -9,7 +9,7 @@ class EventCreateRequest(BaseModel):
     date: datetime
     location: str = Field(min_length=1, max_length=255)
     price: float = Field(gt=0, le=999999.99)
-    capacity: int = Field(gt=0, le=10000)
+    capacity: int = Field(gt=0, le=100)
     tmdb_id: int | None = None
     poster_url: str | None = Field(None, max_length=500)
     
