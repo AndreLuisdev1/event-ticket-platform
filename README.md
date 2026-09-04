@@ -43,7 +43,7 @@ A compra não possui integração de pagamento neste MVP. Ao confirmar, o sistem
 
 A aplicação está disponível em ambiente de produção:
 
-- **Frontend (Web):** [Cine.Pass na Vercel](https://event-ticket-platform.vercel.app)
+- **Frontend (Web):** [Cine.Pass na Vercel](https://event-ticket-platform-flax.vercel.app)
 - **Backend (API & Documentação Swagger):** [Documentação OpenAPI no Render](https://cinepass-api.onrender.com/docs)
 - **Healthcheck da API:** [Status do Serviço](https://cinepass-api.onrender.com/health)
 
