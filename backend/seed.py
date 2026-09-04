@@ -1,4 +1,5 @@
 import asyncio
+import sys
 
 from auth.repository import create_user, get_user_by_email
 from auth.service import hash_password
@@ -42,4 +43,7 @@ async def seed_users() -> None:
 
 
 if __name__ == "__main__":
+    if sys.platform == "win32":
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
     asyncio.run(seed_users())
