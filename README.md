@@ -39,7 +39,15 @@ A compra não possui integração de pagamento neste MVP. Ao confirmar, o sistem
 
 ## Demo
 
-Ainda não há uma demo hospedada. O projeto pode ser executado localmente com Docker Compose seguindo as instruções abaixo.
+## Demo
+
+A aplicação está disponível em ambiente de produção:
+
+- **Frontend (Web):** [Cine.Pass na Vercel](https://event-ticket-platform.vercel.app)
+- **Backend (API & Documentação Swagger):** [Documentação OpenAPI no Render](https://cinepass-api.onrender.com/docs)
+- **Healthcheck da API:** [Status do Serviço](https://cinepass-api.onrender.com/health)
+
+> **Nota:** Em decorrência do plano gratuito de hospedagem do backend no Render, a instância pode entrar em repouso após períodos de inatividade. A primeira requisição pode levar aproximadamente 45 segundos para inicializar o contêiner (*cold start*).
 
 ## Stack
 
@@ -197,8 +205,8 @@ docker compose run --rm seed
 
 | Perfil | E-mail | Senha |
 | --- | --- | --- |
-| Cliente | `cliente.demo@cinepass.local` | `Cliente@123` |
-| Organizador | `organizador.demo@cinepass.local` | `Organizador@123` |
+| Cliente | `cliente.demo@cinepass.com` | `Cliente@123` |
+| Organizador | `organizador.demo@cinepass.com` | `Organizador@123` |
 
 O comando é idempotente: se os usuários já existirem, eles não serão duplicados.
 
@@ -370,6 +378,10 @@ O projeto está em fase de MVP funcional. O fluxo principal de autenticação, c
 
 ## O que pretendo adicionar no futuro
 
+- Simulação de sistema de pagamento integrado com confirmação assíncrona;
+- Compartilhamento e envio de comprovantes de ingresso via e-mail;
+- Sistema de leitura e validação de QR Code em tempo real por meio da câmera do dispositivo;
+- Visualização de catálogo e sessões em formato de calendário interativo para o cliente.
 
 ## Licença
 
