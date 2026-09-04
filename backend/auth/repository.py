@@ -9,7 +9,7 @@ async def get_user_by_email(email: str) -> dict[str, Any] | None:
         FROM users
         WHERE email = %s
         """,
-        (email)
+           (email,)
     )
 
 
@@ -20,7 +20,7 @@ async def get_user_by_id(user_id: int) -> dict[str, Any] | None:
         FROM users
         WHERE id = %s
         """,
-        (user_id)
+           (user_id,)
     )
 
 

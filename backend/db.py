@@ -1,10 +1,20 @@
 import os
 import aiomysql
+import ssl
 from dotenv import load_dotenv
 
 load_dotenv()
 
 pool: aiomysql.Pool | None = None
+
+
+def get_ssl_context() -> ssl.SSLContext | None:
+    if os.getenv("DB_SSL", "false").lower() not in {"1", "true", "yes"}:
+        return None
+
+    ca_file = os.getenv("DB_SSL_CA")
+    return ssl.create_default_context(cafile=ca_file) if ca_file else ssl.create_default_context()
+
 
 async def init_db():
     global pool
@@ -15,6 +25,7 @@ async def init_db():
         password=os.getenv("DB_PASSWORD", "devpassword"),
         db=os.getenv("DB_NAME", "cinema_db"),
         autocommit=True,
+        ssl=get_ssl_context(),
         minsize=1,
         maxsize=10 #Define o tamanho máximo do pool de conexões, deixarei um número razoável para evitar sobrecarga no banco de dados, mas ainda permitir um teste robusto.
     )
