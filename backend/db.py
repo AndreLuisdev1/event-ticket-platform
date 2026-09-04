@@ -18,16 +18,22 @@ def get_ssl_context() -> ssl.SSLContext | None:
 
 async def init_db():
     global pool
+    db_host = os.getenv("DB_HOST", "localhost").strip()
+    db_port = int(os.getenv("DB_PORT", 3306))
+    db_user = os.getenv("DB_USER", "devuser").strip()
+    db_password = os.getenv("DB_PASSWORD", "devpassword").strip().strip("'").strip('"')
+    db_name = os.getenv("DB_NAME", "cinema_db").strip()
+
     pool = await aiomysql.create_pool(
-        host=os.getenv("DB_HOST", "localhost"),
-        port=int(os.getenv("DB_PORT", 3306)),
-        user=os.getenv("DB_USER", "devuser"),
-        password=os.getenv("DB_PASSWORD", "devpassword"),
-        db=os.getenv("DB_NAME", "cinema_db"),
+        host=db_host,
+        port=db_port,
+        user=db_user,
+        password=db_password,
+        db=db_name,
         autocommit=True,
         ssl=get_ssl_context(),
         minsize=1,
-        maxsize=10 #Define o tamanho máximo do pool de conexões, deixarei um número razoável para evitar sobrecarga no banco de dados, mas ainda permitir um teste robusto.
+        maxsize=10
     )
 
 async def close_db():
