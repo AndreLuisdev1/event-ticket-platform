@@ -136,7 +136,7 @@ export default function ManageEventsPage() {
       const payload = {
         title: editForm.title,
         description: editForm.description || null,
-        date: new Date(editForm.date).toISOString(),
+        date: editForm.date,
         location: editForm.location,
         price: Number(editForm.price),
         capacity: Number(editForm.capacity),
