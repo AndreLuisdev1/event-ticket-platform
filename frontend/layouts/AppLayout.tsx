@@ -31,7 +31,7 @@ export default function AppLayout() {
     ]
     : 
     [
-        { label: 'Catálogo', path: '/catalog', icon: <EventIcon /> },
+        { label: 'Catálogo de Eventos', path: '/catalog', icon: <EventIcon /> },
         { label: 'Meus Ingressos', path: '/tickets', icon: <ConfirmationNumberIcon /> },
     ];
 

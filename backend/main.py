@@ -8,6 +8,7 @@ from scr.routes.auth import router as auth_router
 from scr.routes.events import router as events_router
 from scr.routes.seats import router as seats_router
 from scr.routes.tickets import router as tickets_router
+from scr.routes.tmdb import router as tmdb_router
 
 
 @asynccontextmanager
@@ -43,6 +44,7 @@ app.include_router(auth_router)
 app.include_router(events_router)
 app.include_router(seats_router)
 app.include_router(tickets_router)
+app.include_router(tmdb_router)
 
 
 @app.get("/")

@@ -3,6 +3,7 @@ import ProtectedRoute from '../components/ProtectedRoute';
 import LoginPage from '../pages/auth/LoginPage';
 import RegisterPage from '../pages/auth/RegisterPage';
 import AppLayout from '../layouts/AppLayout';
+import OrganizerCatalogPage from '../pages/organizer/OrganizerCatalogPage';
 
 export function AppRouter() {
 	return (
@@ -12,7 +13,7 @@ export function AppRouter() {
 			<Route element={<ProtectedRoute />}>
 				<Route element={<AppLayout />}>
 					<Route path="/" element={<Navigate to="/catalog" replace />} />
-					<Route path="/catalog" element={<div />} />
+					<Route path="/catalog" element={<OrganizerCatalogPage />} />
 					<Route path="/tickets" element={<div />} />
 					<Route path="/manage-events" element={<div />} />
 					<Route path="/validate-tickets" element={<div />} />
