@@ -9,13 +9,13 @@ from db import close_db, init_db
 SEED_USERS = (
     {
         "name": "Cliente Demo",
-        "email": "cliente.demo@cinepass.local",
+        "email": "cliente.demo@cinepass.com",
         "password": "Cliente@123",
         "role": "CLIENT",
     },
     {
         "name": "Organizador Demo",
-        "email": "organizador.demo@cinepass.local",
+        "email": "organizador.demo@cinepass.com",
         "password": "Organizador@123",
         "role": "ORGANIZER",
     },
