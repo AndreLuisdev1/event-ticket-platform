@@ -16,7 +16,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import Snackbar from '@mui/material/Snackbar';
 import Typography from '@mui/material/Typography';
-import { getAccessToken } from '../../contexts/authContext';
+import { getAccessToken } from '../../contexts/AuthContext';
 import './myTickets.css';
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000';

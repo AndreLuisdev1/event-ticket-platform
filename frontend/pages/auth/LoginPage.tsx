@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { ThemeProvider } from '@mui/material/styles';
-import { useAuth } from '../../contexts/authContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { authTheme } from './authTheme';
 import './auth.css';
 

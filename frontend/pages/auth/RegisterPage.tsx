@@ -11,7 +11,7 @@ import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { ThemeProvider } from '@mui/material/styles';
-import { useAuth, type UserRole } from '../../contexts/authContext';
+import { useAuth, type UserRole } from '../../contexts/AuthContext';
 import { authTheme } from './authTheme';
 import './auth.css';
 

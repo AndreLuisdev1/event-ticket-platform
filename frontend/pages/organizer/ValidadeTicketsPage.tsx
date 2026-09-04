@@ -10,7 +10,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { getAccessToken, useAuth } from '../../contexts/authContext';
+import { getAccessToken, useAuth } from '../../contexts/AuthContext';
 import './validadeTickets.css';
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000';

@@ -3,7 +3,7 @@ import ProtectedRoute from '../components/ProtectedRoute';
 import LoginPage from '../pages/auth/LoginPage';
 import RegisterPage from '../pages/auth/RegisterPage';
 import AppLayout from '../layouts/AppLayout';
-import { useAuth } from '../contexts/authContext';
+import { useAuth } from '../contexts/AuthContext';
 import ClientCatalogPage from '../pages/client/ClientCatalogPage';
 import MyTicketsPage from '../pages/client/MyTickets';
 import OrganizerCatalogPage from '../pages/organizer/OrganizerCatalogPage';

@@ -14,7 +14,7 @@ import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AddIcon from '@mui/icons-material/Add';
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
-import { useAuth } from '../contexts/authContext';
+import { useAuth } from '../contexts/AuthContext';
 import './layout.css';
 
 export default function AppLayout() {
