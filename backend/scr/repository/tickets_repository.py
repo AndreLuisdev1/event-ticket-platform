@@ -5,6 +5,7 @@ from db import execute_query, execute_update, fetch_all, fetch_one
 
 TICKET_DETAILS_QUERY = """
 	SELECT t.id, t.event_id, t.seat_id, t.user_id, t.ticket_code,
+		   t.qr_code_hash,
 		   t.status, t.created_at, t.used_at,
 		   e.title AS event_title, e.date AS event_date,
 		   e.location AS event_location, s.seat_number,

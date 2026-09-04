@@ -1,0 +1,433 @@
+/* ============================================================================
+  MEUS INGRESSOS (CLIENT TICKETS)
+  ============================================================================ */
+
+.tickets-container {
+  min-width: 0;
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  padding-bottom: 50px;
+}
+
+/* ============================================================================
+  CABEÇALHO DA PÁGINA
+  ============================================================================ */
+.tickets-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 18px;
+  gap: 16px;
+}
+
+.tickets-title {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin-bottom: 4px !important;
+}
+
+.tickets-subtitle {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.tickets-count-badge {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: #d8b4fe;
+  background: rgba(168, 85, 247, 0.14);
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ============================================================================
+  LISTAGEM DE INGRESSOS (GRID DE TICKET PASSES)
+  ============================================================================ */
+.tickets-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ticket-card {
+  display: flex;
+  position: relative;
+  background: linear-gradient(135deg, rgba(26, 15, 46, 0.85) 0%, rgba(14, 7, 26, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.ticket-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(244, 114, 182, 0.4);
+}
+
+/* ============================================================================
+  CORPO DO BILHETE (ESQUERDA)
+  ============================================================================ */
+.ticket-main {
+  flex: 1;
+  padding: 22px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ticket-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  gap: 12px;
+}
+
+.ticket-code-tag {
+  font-family: monospace;
+  font-size: 0.82rem;
+  color: #c084fc;
+  background: rgba(192, 132, 252, 0.1);
+  padding: 3px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(192, 132, 252, 0.25);
+  letter-spacing: 0.05em;
+}
+
+.ticket-status-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-active {
+  background: rgba(74, 222, 128, 0.14);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.status-used {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.status-cancelled {
+  background: rgba(248, 113, 113, 0.14);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+.ticket-event-name {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  margin-bottom: 16px !important;
+  line-height: 1.25 !important;
+}
+
+.ticket-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ticket-meta-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket-meta-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 4px;
+}
+
+.ticket-meta-value {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #e9d5ff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ticket-meta-value svg {
+  font-size: 1rem;
+  color: #f472b6;
+}
+
+/* ============================================================================
+  PICOTE / LINHA DE DESTACAR O TICKET
+  ============================================================================ */
+.ticket-perforation {
+  position: relative;
+  width: 1px;
+  border-left: 2px dashed rgba(255, 255, 255, 0.16);
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Círculos de corte de cinema */
+.ticket-perforation::before,
+.ticket-perforation::after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: #080114; /* Mesma cor do fundo da página */
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ticket-perforation::before {
+  top: -21px;
+  border-top-color: transparent;
+}
+
+.ticket-perforation::after {
+  bottom: -21px;
+  border-bottom-color: transparent;
+}
+
+/* ============================================================================
+  CANHOTO COM QR CODE (DIREITA)
+  ============================================================================ */
+.ticket-stub {
+  width: 210px;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(12, 6, 22, 0.6);
+  flex-shrink: 0;
+}
+
+.ticket-qr-wrapper {
+  background: #ffffff;
+  padding: 8px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.ticket-qr-wrapper:hover {
+  transform: scale(1.05);
+}
+
+.ticket-qr-img {
+  width: 105px;
+  height: 105px;
+  display: block;
+}
+
+.ticket-stub-instruction {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 10px;
+  margin-bottom: 12px;
+}
+
+.ticket-copy-btn {
+  font-size: 0.72rem !important;
+  color: #f5d0fe !important;
+  border-color: rgba(244, 114, 182, 0.3) !important;
+  text-transform: none !important;
+  border-radius: 8px !important;
+  padding: 4px 10px !important;
+}
+
+.ticket-copy-btn:hover {
+  border-color: #f472b6 !important;
+  background: rgba(244, 114, 182, 0.1) !important;
+}
+
+/* ============================================================================
+  MODAL DE EXPANSÃO DO QR CODE
+  ============================================================================ */
+.qr-dialog-paper {
+  background: linear-gradient(145deg, #1f1133, #0d0618) !important;
+  border: 1px solid rgba(240, 171, 252, 0.3) !important;
+  border-radius: 20px !important;
+  text-align: center;
+  color: #fff;
+  padding: 10px 10px 24px;
+}
+
+.qr-dialog-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 14px 0 !important;
+}
+
+.qr-dialog-header .MuiIconButton-root {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.qr-dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 24px !important;
+}
+
+.qr-big-box {
+  background: #ffffff;
+  padding: 14px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
+}
+
+.qr-big-box img {
+  width: 220px;
+  height: 220px;
+  display: block;
+}
+
+.qr-dialog-title {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  margin-bottom: 4px !important;
+}
+
+.qr-dialog-code {
+  font-family: monospace;
+  font-size: 0.95rem;
+  color: #f472b6;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.qr-dialog-hint {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+}
+
+/* ============================================================================
+  ESTADOS DE CARREGAMENTO E VAZIO
+  ============================================================================ */
+.tickets-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  background: rgba(18, 10, 32, 0.45);
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  margin-top: 10px;
+}
+
+.tickets-empty-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(168, 85, 247, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  border: 1px solid rgba(168, 85, 247, 0.25);
+}
+
+.tickets-empty-icon svg {
+  font-size: 2.2rem;
+  color: #d8b4fe;
+}
+
+.tickets-empty-btn {
+  margin-top: 20px !important;
+  background: linear-gradient(135deg, #7c3aed, #ec4899) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  padding: 8px 24px !important;
+  border-radius: 12px !important;
+}
+
+.tickets-loading {
+  display: grid;
+  min-height: 320px;
+  place-items: center;
+}
+
+.tickets-loading .MuiCircularProgress-root {
+  color: #f472b6;
+}
+
+/* ============================================================================
+  RESPONSIVIDADE (MOBILE / TABLET)
+  ============================================================================ */
+@media (max-width: 720px) {
+  .ticket-card {
+    flex-direction: column;
+  }
+  .ticket-perforation {
+    width: 100%;
+    height: 1px;
+    border-left: none;
+    border-top: 2px dashed rgba(255, 255, 255, 0.16);
+    margin: 0;
+  }
+  .ticket-perforation::before,
+  .ticket-perforation::after {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+  }
+  .ticket-perforation::before {
+    left: -11px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-left-color: transparent;
+  }
+  .ticket-perforation::after {
+    right: -11px;
+    left: auto;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-right-color: transparent;
+  }
+  .ticket-stub {
+    width: 100%;
+    padding: 20px;
+  }
+}

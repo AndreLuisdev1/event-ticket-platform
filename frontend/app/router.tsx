@@ -5,6 +5,7 @@ import RegisterPage from '../pages/auth/RegisterPage';
 import AppLayout from '../layouts/AppLayout';
 import { useAuth } from '../contexts/authContext';
 import ClientCatalogPage from '../pages/client/ClientCatalogPage';
+import MyTicketsPage from '../pages/client/MyTickets';
 import OrganizerCatalogPage from '../pages/organizer/OrganizerCatalogPage';
 
 function CatalogPage() {
@@ -22,7 +23,7 @@ export function AppRouter() {
 				<Route element={<AppLayout />}>
 					<Route path="/" element={<Navigate to="/catalog" replace />} />
 					<Route path="/catalog" element={<CatalogPage />} />
-					<Route path="/tickets" element={<div />} />
+					<Route path="/tickets" element={<MyTicketsPage />} />
 					<Route path="/manage-events" element={<div />} />
 					<Route path="/validate-tickets" element={<div />} />
 				</Route>

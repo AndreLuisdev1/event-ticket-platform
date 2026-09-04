@@ -189,7 +189,7 @@
 .app-main {
   min-height: 100vh;
   margin-left: var(--sidebar-width);
-  padding: 96px 36px 36px;
+  padding: 50px 36px 36px;
 }
 
 /* ============================================================================
