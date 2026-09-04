@@ -346,8 +346,6 @@ Os estados de assento são `AVAILABLE`, `HELD` e `SOLD`. Reservas temporárias e
 
 ## Boas práticas demonstradas
 
-Este MVP foi estruturado com práticas valorizadas em portfólios profissionais, especialmente para quem está começando na área:
-
 - separação de responsabilidades entre rotas, serviços, repositórios e schemas;
 - contratos tipados no frontend com TypeScript;
 - validação de dados no backend com Pydantic;
